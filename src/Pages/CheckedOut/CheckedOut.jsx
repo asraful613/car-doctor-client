@@ -5,21 +5,37 @@ import { AuthContext } from "../../Providers/AuthProvider";
 const CheckedOut = () => {
     const {user}=useContext(AuthContext)
     const service=useLoaderData()
-    const {title,_id,price}=service;
+    const {title,_id,price,img}=service;
     const handleCheckOutOrder=e=>{
        e.preventDefault();
         const form=e.target;
         const name=form.name.value;
         const date=form.date.value;
         const email=user?.email;
-        const order={
+        const booking={
             customerName:name,
             email,
+            img,
             date,
             service:_id,
             price:price
         }
-        console.log(order);
+        console.log(booking);
+        fetch('http://localhost:5000/booking',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(booking)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+          if(data.insertedId){
+            alert('Your order has been placed successfully');
+            form.reset();
+          }
+        })
     }
     return (
         <div>
