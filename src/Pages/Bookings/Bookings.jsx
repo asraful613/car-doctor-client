@@ -24,10 +24,11 @@ const Bookings = () => {
             <input type="checkbox" className="checkbox" />
           </label>
         </th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
+        <th>Image</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
